@@ -9,25 +9,30 @@ public class Alarm : MonoBehaviour
     [SerializeField] private Color _targetColor;
     [SerializeField] private AudioSource _audio;
 
+    private float _speedChangeVolume = 2;
+
     private void Update()
     {
         ChangeVolume();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<MoveThief>(out MoveThief moveThief))
         {
             _renderer.color = _targetColor;
-            _audio.Play();           
+            _audio.Play();
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         _renderer.color = _color;
         _audio.Stop();
     }
+
     private void ChangeVolume()
     {
-        _audio.volume = Mathf.Sin(Time.time * 3);
+        _audio.volume = Mathf.Sin(Time.time * _speedChangeVolume);
     }
 }
