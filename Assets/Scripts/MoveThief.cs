@@ -10,12 +10,17 @@ public class MoveThief : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(1 * _speed * Time.deltaTime, 0, 0);
+            Movement(1);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(-1 * _speed * Time.deltaTime, 0, 0);
+            Movement(-1);
         }
+    }
+
+    private void Movement(float directionX)
+    {
+        transform.Translate(directionX * _speed * Time.deltaTime, 0, 0);
     }
 }
